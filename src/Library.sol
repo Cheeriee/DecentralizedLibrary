@@ -72,7 +72,7 @@ function addBook(string memory title, string memory author, uint256 totalCopies)
 
     emit BookAdded(nextBookId, author,title, totalCopies);
 
-    nextBookId++ //increment book ID for next book
+    nextBookId++; //increment book ID for next book
 }
 
 function borrowBook(uint256 bookId) external {
@@ -111,15 +111,15 @@ function returnBook() external {
 
     book.availableCopies++; //update availability
 
-    borrow.active: false;
-    borrow.bookId: 0;
-    borrow.borrowTime: 0;
+    borrow.active = false;
+    borrow.bookId = 0;
+    borrow.borrowTime = 0;
 
     emit BookReturned(msg.sender, book.id, block.timestamp);
 }
 
 function transferAdmin(address newAdmin) external onlyAdmin {
-    if(newAdmin = address(0)) {
+    if(newAdmin == address(0)) {
         revert InvalidInput();
     }
     address oldAdmin = admin;
@@ -146,6 +146,6 @@ function getUserBorrow(address user) external view returns( //checks if a user h
     uint256 borrowTime,
     bool active){
         Borrow storage borrow = userBorrows[user];
-        return(borrow.bookId, borrow.borrowTime, borr.active);
+        return(borrow.bookId, borrow.borrowTime, borrow.active);
     }
 }
