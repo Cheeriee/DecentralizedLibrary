@@ -113,7 +113,7 @@ contract LibraryTest is Test {  //this test contract inherits fro Test, which is
         vm.expectEmit(true, true, false, true);
         emit BookReturned(user1, 1, block.timestamp);
         libraryContract.returnBook();
-          (,, uint256 totalCopies, uint256 availableCopies) = libraryContract.getBookDetails(1);
+          (,,, uint256 availableCopies) = libraryContract.getBookDetails(1);
         assertEq(availableCopies, 2, "Available copies should increase to 2");
         (uint256 bookId, uint256 borrowTime, bool active) = libraryContract.getUserBorrow(user1);
         assertEq(bookId, 0, "Book ID should be reset");
